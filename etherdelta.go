@@ -599,7 +599,11 @@ func (s *Service) MakeOrder(opts *MakeOrderOpts) (string, error) {
 		return result, fmt.Errorf("ECRecover error: %s", err)
 	}
 
-	pubKey := crypto.ToECDSAPub(recoveredPub)
+	pubKey, err := crypto.UnmarshalPubkey(recoveredPub)
+	if err != nil {
+		return result, fmt.Errorf("Invalid public key: %x", recoveredPub)
+	}
+
 	recoveredAddr := crypto.PubkeyToAddress(*pubKey)
 	addr := common.HexToAddress(opts.UserAddress)
 

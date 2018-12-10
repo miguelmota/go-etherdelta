@@ -75,7 +75,7 @@ func TestGetTokenTicker(t *testing.T) {
 }
 
 func TestGetTokenPrice(t *testing.T) {
-	//t.Skip("Skipping GetTokenPrice")
+	t.Skip("Skipping GetTokenPrice")
 	getTokenPriceOpts := &GetTokenPriceOpts{
 		TokenSymbol: "BAT",
 	}
@@ -518,7 +518,7 @@ func TestSignature(t *testing.T) {
 	}
 
 	recoveredPub, err := crypto.Ecrecover(msg, sig)
-	pubKey := crypto.ToECDSAPub(recoveredPub)
+	pubKey, _ := crypto.UnmarshalPubkey(recoveredPub)
 	recoveredAddr := crypto.PubkeyToAddress(*pubKey)
 
 	addr := common.HexToAddress(orderPost.User)
