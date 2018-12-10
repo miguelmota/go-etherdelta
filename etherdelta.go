@@ -93,7 +93,7 @@ func (s *Service) GetOrderBook(opts *GetOrderBookOpts) (*OrderBook, error) {
 	var target map[string]interface{}
 	tries := 0
 
-	log.Debug("Fetching EtherDelta orderbook for token %s", opts.TokenAddress)
+	log.Debugf("Fetching EtherDelta orderbook for token %s", opts.TokenAddress)
 
 	// retry if error or null response
 	for tries < maxTries {
@@ -669,7 +669,7 @@ func (s *Service) CancelOrder(opts *CancelOrderOpts) ([]byte, error) {
 		S,
 	)
 
-	log.Infof("CancelOrder TX: %s", tx)
+	log.Infof("CancelOrder TX: %v", tx)
 
 	txHash = tx.Hash().Bytes()
 
@@ -742,7 +742,7 @@ func (s *Service) MakeTrade(opts *MakeTradeOpts) ([]byte, error) {
 		return txHash, fmt.Errorf("Trade failed, got error: %s", err)
 	}
 
-	log.Infof("MakeTrade TX: %s", tx)
+	log.Infof("MakeTrade TX: %v", tx)
 
 	txHash = tx.Hash().Bytes()
 
@@ -761,7 +761,7 @@ func (s *Service) DepositEth(opts *DepositEthOpts) ([]byte, error) {
 
 	txHash = tx.Hash().Bytes()
 
-	log.Infof("Deposited to EtherDelta, TX: %s", tx)
+	log.Infof("Deposited to EtherDelta, TX: %v", tx)
 
 	return txHash, nil
 }
@@ -781,7 +781,7 @@ func (s *Service) WithdrawToken(opts *WithdrawTokenOpts) ([]byte, error) {
 
 	txHash = tx.Hash().Bytes()
 
-	log.Infof("Withdrew tokens from EtherDelta, TX: %s", tx)
+	log.Infof("Withdrew tokens from EtherDelta, TX: %v", tx)
 
 	return txHash, nil
 }
