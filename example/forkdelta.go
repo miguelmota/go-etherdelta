@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	ed "github.com/coincircle/go-etherdelta"
+	ed "github.com/miguelmota/go-etherdelta"
 )
 
 func main() {
